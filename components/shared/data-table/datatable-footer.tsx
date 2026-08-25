@@ -66,7 +66,12 @@ export function DataTablePageSize({
   return (
     <div className="flex items-center gap-2">
       <span className="whitespace-nowrap text-sm font-medium">Page size</span>
-      <Select value={String(value)} onValueChange={(v: string) => handleChange(Number(v))}>
+      <Select
+        value={String(value)}
+        onValueChange={(v) => {
+          if (v != null) handleChange(Number(v));
+        }}
+      >
         <SelectTrigger className="h-8 w-20">
           <SelectValue />
         </SelectTrigger>
