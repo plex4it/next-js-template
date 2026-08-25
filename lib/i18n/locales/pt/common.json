@@ -1,0 +1,14 @@
+{
+  "appName": "App Template",
+  "dashboard": "Painel",
+  "users": "Utilizadores",
+  "administration": "Administração",
+  "welcome": "Bem-vindo, {{name}}",
+  "dashboardDescription": "Use este template para construir a sua próxima app. Auth (Keycloak) será ligado numa tarefa seguinte.",
+  "actions": "Ações",
+  "add": "Adicionar",
+  "export": "Exportar",
+  "cancel": "Cancelar",
+  "account": "Conta",
+  "notifications": "Notificações"
+}
