@@ -1,29 +1,29 @@
 {
-  "title": "Users",
-  "empty": "No users",
-  "searchPlaceholder": "Search users…",
+  "addSuccess": "User added",
+  "addTitle": "Add user",
   "columns": {
-    "name": "Name",
     "email": "Email",
+    "name": "Name",
     "role": "Role",
     "status": "Status"
   },
-  "addTitle": "Add user",
-  "addDescription": "Create a mock user in local state.",
-  "addSuccess": "User added",
+  "empty": "No users",
   "fields": {
+    "email": "Email",
     "firstName": "First name",
     "lastName": "Last name",
-    "email": "Email",
-    "role": "Role"
+    "role": "Role",
+    "status": "Status"
   },
   "roles": {
     "admin": "Admin",
     "member": "Member",
     "viewer": "Viewer"
   },
+  "searchPlaceholder": "Search users…",
   "status": {
     "active": "Active",
     "inactive": "Inactive"
-  }
+  },
+  "title": "Users"
 }

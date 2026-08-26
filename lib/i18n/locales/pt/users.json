@@ -1,29 +1,29 @@
 {
-  "title": "Utilizadores",
-  "empty": "Sem utilizadores",
-  "searchPlaceholder": "Pesquisar utilizadores…",
+  "addSuccess": "Utilizador adicionado",
+  "addTitle": "Adicionar utilizador",
   "columns": {
-    "name": "Nome",
     "email": "Email",
+    "name": "Nome",
     "role": "Perfil",
     "status": "Estado"
   },
-  "addTitle": "Adicionar utilizador",
-  "addDescription": "Cria um utilizador mock no estado local.",
-  "addSuccess": "Utilizador adicionado",
+  "empty": "Sem utilizadores",
   "fields": {
+    "email": "Email",
     "firstName": "Nome",
     "lastName": "Apelido",
-    "email": "Email",
-    "role": "Perfil"
+    "role": "Perfil",
+    "status": "Estado"
   },
   "roles": {
     "admin": "Admin",
     "member": "Membro",
     "viewer": "Leitor"
   },
+  "searchPlaceholder": "Pesquisar utilizadores…",
   "status": {
     "active": "Ativo",
     "inactive": "Inativo"
-  }
+  },
+  "title": "Utilizadores"
 }

@@ -1,14 +1,15 @@
 {
-  "appName": "App Template",
-  "dashboard": "Painel",
-  "users": "Utilizadores",
-  "administration": "Administração",
-  "welcome": "Bem-vindo, {{name}}",
-  "dashboardDescription": "Use este template para construir a sua próxima app. Auth (Keycloak) será ligado numa tarefa seguinte.",
-  "actions": "Ações",
-  "add": "Adicionar",
-  "export": "Exportar",
-  "cancel": "Cancelar",
   "account": "Conta",
-  "notifications": "Notificações"
+  "dashboardDescription": "PlexIt Next.JS Template.",
+  "langEn": "English",
+  "langPt": "Português",
+  "language": "Idioma",
+  "loading": "A carregar...",
+  "logout": "Sair",
+  "notifications": "Notificações",
+  "theme": "Tema",
+  "themeDark": "Escuro",
+  "themeLight": "Claro",
+  "themeSystem": "Sistema",
+  "welcome": "Bem-vindo, {{name}}"
 }
