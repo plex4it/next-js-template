@@ -3,7 +3,7 @@ import type { I18nConfig } from 'next-i18next/proxy';
 const i18nConfig: I18nConfig = {
   supportedLngs: ['en', 'pt'],
   fallbackLng: 'en',
-  ns: ['common', 'users'],
+  ns: ['common', 'users', 'home'],
   defaultNS: 'common',
   localeInPath: false,
   resourceLoader: (language, namespace) =>
