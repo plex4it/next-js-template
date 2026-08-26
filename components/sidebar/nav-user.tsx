@@ -17,19 +17,23 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { BellIcon, UserIcon } from 'lucide-react';
+import { BellIcon, LogOutIcon, UserIcon } from 'lucide-react';
 import { UserAvatar } from '@/components/sidebar/user/user-avatar';
+import { useT } from 'next-i18next/client';
+import { NavUserThemeMenu } from '@/components/sidebar/user/user-theme';
+import { NavUserLanguageMenu } from '@/components/sidebar/user/user-locale';
 
 interface NavUserProps {
   firstName: string;
   lastName: string;
   email: string;
+  onLogout?: () => void;
 }
 
 const Footer = React.forwardRef<
   HTMLButtonElement,
   Readonly<NavUserProps> & React.ComponentPropsWithoutRef<typeof SidebarMenuButton>
->(({ firstName, lastName, email, ...props }, ref) => {
+>(({ firstName, lastName, email, onLogout, ...props }, ref) => {
   return (
     <SidebarMenuButton
       ref={ref}
@@ -48,8 +52,14 @@ const Footer = React.forwardRef<
 
 Footer.displayName = 'NavUserTrigger';
 
-export function NavUser({ firstName, lastName, email }: Readonly<NavUserProps>) {
+export function NavUser({ firstName, lastName, email, onLogout }: Readonly<NavUserProps>) {
   const { isMobile, setOpenMobile } = useSidebar();
+  const { t } = useT('common');
+
+  const handleLogout = () => {
+    setOpenMobile(false);
+    onLogout?.();
+  };
 
   return (
     <SidebarMenu>
@@ -74,13 +84,17 @@ export function NavUser({ firstName, lastName, email }: Readonly<NavUserProps>) 
                   </div>
                 </div>
               </DropdownMenuLabel>
-              <DropdownMenuSeparator />
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuGroup>
               <DropdownMenuItem
                 onClick={() => setOpenMobile(false)}
                 render={
                   <Link href="/dashboard">
                     <UserIcon data-icon="inline-start" />
-                    Account
+                    {t('account')}
                   </Link>
                 }
               />
@@ -89,10 +103,26 @@ export function NavUser({ firstName, lastName, email }: Readonly<NavUserProps>) 
                 render={
                   <span>
                     <BellIcon data-icon="inline-start" />
-                    Notifications
+                    {t('notifications')}
                   </span>
                 }
               />
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuGroup>
+              <NavUserThemeMenu />
+              <NavUserLanguageMenu />
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuGroup>
+              <DropdownMenuItem variant="destructive" onClick={handleLogout}>
+                <LogOutIcon data-icon="inline-start" />
+                {t('logout')}
+              </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
