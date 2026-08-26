@@ -3,8 +3,10 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
 
 export default function ProtectedLayout({
   children,
+  breadcrumbs,
 }: Readonly<{
   children: React.ReactNode;
+  breadcrumbs: React.ReactNode;
 }>) {
   return (
     <SidebarProvider>
@@ -12,6 +14,7 @@ export default function ProtectedLayout({
       <SidebarInset className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
+          {breadcrumbs}
         </header>
         <main className="flex min-h-0 flex-1 flex-col overflow-hidden">{children}</main>
       </SidebarInset>
