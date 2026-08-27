@@ -1,4 +1,10 @@
-import { LayoutDashboardIcon, LucideIcon, UsersRoundIcon, StickyNoteIcon } from 'lucide-react';
+import {
+  LayoutDashboardIcon,
+  LucideIcon,
+  UsersRoundIcon,
+  UserKeyIcon,
+  StickyNoteIcon,
+} from 'lucide-react';
 
 interface NavRoute {
   title: string;
@@ -26,7 +32,7 @@ export const groups: NavGroup[] = [
     routes: [
       {
         title: 'Products',
-        url: '/products',
+        url: '/pages/products',
         icon: StickyNoteIcon,
       },
     ],
@@ -38,6 +44,11 @@ export const groups: NavGroup[] = [
         title: 'Users',
         url: '/admin/users',
         icon: UsersRoundIcon,
+      },
+      {
+        title: 'Roles',
+        url: '/admin/roles',
+        icon: UserKeyIcon,
       },
     ],
   },
