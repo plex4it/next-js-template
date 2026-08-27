@@ -1,10 +1,8 @@
-'use client';
-
 import { Page } from '@/components/shared/pages-layout';
-import { useTranslation } from 'react-i18next';
+import { getT } from 'next-i18next/server';
 
-export default function DashboardPage() {
-  const { t } = useTranslation('common');
+export default async function DashboardPage() {
+  const { t } = await getT('common');
 
   return (
     <Page>
