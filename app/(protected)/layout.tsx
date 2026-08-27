@@ -19,11 +19,11 @@ export default async function ProtectedLayout({
         email={session.user.email}
       />
       <SidebarInset className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b bg-background/80 px-4 fixed overflow-auto w-full backdrop-blur backdrop-saturate-150">
           <SidebarTrigger className="-ml-1" />
           {breadcrumbs}
         </header>
-        <main className="flex min-h-0 flex-1 flex-col overflow-hidden">{children}</main>
+        <main className="flex min-h-0 flex-1 flex-col overflow-y-auto pt-16">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
