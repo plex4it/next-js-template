@@ -26,7 +26,7 @@ export default function LoginPage() {
       providerId: 'keycloak',
       callbackURL: '/dashboard',
     });
-  }, [session, isPending]);
+  }, [session, isPending, router]);
 
   return null;
 }
