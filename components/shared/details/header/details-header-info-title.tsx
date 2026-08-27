@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react';
 import { CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 interface DetailsHeaderInfoTitleProps {
   title: string;
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export function DetailsHeaderInfoTitle({

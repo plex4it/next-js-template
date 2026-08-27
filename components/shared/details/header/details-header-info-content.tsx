@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface DetailsHeaderInfoContent {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function DetailsHeaderInfoContent({

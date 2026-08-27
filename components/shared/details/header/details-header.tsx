@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 interface DetailsHeaderProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 

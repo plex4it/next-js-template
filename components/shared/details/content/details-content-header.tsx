@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react';
 import { CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
 interface DetailsContentHeaderProps {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function DetailsContentHeader({ className, children }: Readonly<DetailsContentHeaderProps>) {

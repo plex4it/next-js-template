@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { DetailsContent } from './content/details-content';
 import { DetailsHeader } from './header/details-header';
@@ -14,7 +15,7 @@ import { DetailsHeaderInfoTitle } from './header/details-header-info-title';
 import { DetailsContentBody } from './content/details-content-body';
 
 interface DetailsRootProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 

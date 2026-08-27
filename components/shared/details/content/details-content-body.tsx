@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react';
 import { CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 interface DetailsContentContentProps {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function DetailsContentBody({ className, children }: Readonly<DetailsContentContentProps>) {
@@ -11,8 +12,8 @@ export function DetailsContentBody({ className, children }: Readonly<DetailsCont
 }
 
 interface DetailsContentEntryProps {
-  label: string | React.ReactNode;
-  value: string | React.ReactNode;
+  label: string | ReactNode;
+  value: string | ReactNode;
   className?: string;
 }
 
