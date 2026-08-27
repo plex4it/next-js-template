@@ -1,17 +1,19 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth/auth-client';
 
 export default function LoginPage() {
+  const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const hasRedirected = useRef(false);
 
   // React Strict Mode double-mount can fire two OAuth sign-ins with different state tokens.
   useEffect(() => {
     if (session) {
-      redirect('/dashboard');
+      router.replace('/dashboard');
+      return;
     }
 
     if (isPending || hasRedirected.current) {

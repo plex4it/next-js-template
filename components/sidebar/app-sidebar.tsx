@@ -24,6 +24,7 @@ export function AppSidebar({ firstName, lastName, email, ...props }: AppSidebarP
 
   const handleLogout = () => {
     router.replace('/api/auth/logout');
+    return;
   };
 
   return (
