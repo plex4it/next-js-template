@@ -1,4 +1,10 @@
 {
+  "error_digest": "Error ID: {{digest}}",
   "error_loading": "Error loading data",
-  "generic": "An error occurred"
+  "generic": "An error occurred",
+  "go_home": "Go home",
+  "not_found_description": "The page you're looking for doesn't exist or has been moved.",
+  "not_found_title": "Page not found",
+  "page_description": "An unexpected error occurred. Please try again.",
+  "page_title": "Something went wrong"
 }

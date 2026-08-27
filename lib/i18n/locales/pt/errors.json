@@ -1,4 +1,10 @@
 {
+  "error_digest": "ID do erro: {{digest}}",
   "error_loading": "Erro ao carregar os dados",
-  "generic": "Ocorreu um erro"
+  "generic": "Ocorreu um erro",
+  "go_home": "Ir para o início",
+  "not_found_description": "A página que procura não existe ou foi movida.",
+  "not_found_title": "Página não encontrada",
+  "page_description": "Ocorreu um erro inesperado. Tente novamente.",
+  "page_title": "Algo correu mal"
 }
