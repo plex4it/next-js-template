@@ -1,3 +1,6 @@
 {
-  "field_required": "Este campo é obrigatório"
+  "code_maximum_characters": "O código não deve exceder o número máximo de caracteres",
+  "description_maximum_characters": "A descrição não deve exceder o número máximo de caracteres",
+  "field_required": "Este campo é obrigatório",
+  "name_maximum_characters": "O nome não deve exceder o número máximo de caracteres"
 }

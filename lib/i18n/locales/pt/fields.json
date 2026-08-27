@@ -1,6 +1,12 @@
 {
+  "code": "Código",
+  "description": "Descrição",
   "email": "Email",
   "first_name": "Primeiro Nome",
+  "identity_provider": "Fornecedor de Identidade",
   "last_name": "Último Nome",
-  "user": "Utilizador"
+  "name": "Nome",
+  "role": "Função",
+  "user": "Utilizador",
+  "users": "Utilizadores"
 }

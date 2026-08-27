@@ -1,3 +1,6 @@
 {
-  "field_required": "This field is required"
+  "code_maximum_characters": "Code must not exceed the maximum number of characters",
+  "description_maximum_characters": "Description must not exceed the maximum number of characters",
+  "field_required": "This field is required",
+  "name_maximum_characters": "Name must not exceed the maximum number of characters"
 }
