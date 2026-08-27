@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
-pnpm dlx i18next-cli extract --ci 
+pnpm dlx i18next-cli extract
 pnpm lint-staged
+pnpm typecheck
