@@ -41,11 +41,3 @@ export async function apiRequest(path: string, method: HttpMethod, data?: object
       JSON.stringify(data, (_, value) => (typeof value === 'bigint' ? value.toString() : value)),
   });
 }
-
-export const api = {
-  get: (path: string) => apiRequest(path, 'GET'),
-  post: (path: string, data?: object) => apiRequest(path, 'POST', data),
-  put: (path: string, data?: object) => apiRequest(path, 'PUT', data),
-  patch: (path: string, data?: object) => apiRequest(path, 'PATCH', data),
-  delete: (path: string) => apiRequest(path, 'DELETE'),
-};
