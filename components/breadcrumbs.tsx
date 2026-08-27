@@ -37,10 +37,10 @@ export function Breadcrumbs({ routes = [] }: { routes: string[] }) {
     } else {
       breadcrumbItems.push(
         <Fragment key={href}>
-          <BreadcrumbItem>
+          <BreadcrumbItem className="hidden md:inline-flex">
             <BreadcrumbLink render={<Link href={href} />}>{label}</BreadcrumbLink>
           </BreadcrumbItem>
-          <BreadcrumbSeparator />
+          <BreadcrumbSeparator className="hidden md:list-item" />
         </Fragment>
       );
     }
