@@ -1,0 +1,21 @@
+services:
+  template.webapp:
+    build:
+      context: .
+      no_cache: true
+      dockerfile: Dockerfile
+    container_name: plex4ItTemplate
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    networks:
+      - keycloak-net
+      - plexlims-network
+
+networks:
+  keycloak-net:
+    external: true
+  plexlims-network:
+    external: true
