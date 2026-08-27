@@ -1,29 +1,33 @@
 {
-  "addSuccess": "User added",
-  "addTitle": "Add user",
-  "columns": {
-    "email": "Email",
-    "name": "Name",
-    "role": "Role",
-    "status": "Status"
-  },
-  "empty": "No users",
-  "fields": {
-    "email": "Email",
-    "firstName": "First name",
-    "lastName": "Last name",
-    "role": "Role",
-    "status": "Status"
-  },
-  "roles": {
-    "admin": "Admin",
-    "member": "Member",
-    "viewer": "Viewer"
-  },
-  "searchPlaceholder": "Search users…",
-  "status": {
-    "active": "Active",
-    "inactive": "Inactive"
-  },
-  "title": "Users"
+  "activity": "activity",
+  "activity_not_available": "No activity available",
+  "add_modal_description": "Fill the form to create a new user",
+  "add_modal_title": "Add user",
+  "back_to_page": "back to users",
+  "delete_modal_description": "This will permanently remove user {{name}}. This action cannot be undone.",
+  "delete_modal_title": "Delete this user?",
+  "details_delete_description": "Once you delete this user, there is no going back.",
+  "details_delete_title": "Delete user",
+  "edit_title": "Edit user",
+  "email_address": "email address",
+  "error_creating": "Error creating the user",
+  "error_deleting": "Error deleting the user",
+  "error_updating": "Error updating the user",
+  "items_not_available": "No users available",
+  "items_not_created": "You haven't created any users yet.",
+  "notify_added": "User added",
+  "notify_deleted": "User {{name}} deleted",
+  "notify_password_reset": "Password reset successful",
+  "notify_updated": "User updated.",
+  "page_title": "Users",
+  "password": "password",
+  "profile_details": "profile details",
+  "reset_password": "reset password",
+  "security": "Security",
+  "sessions": "Sessions",
+  "sessions_not_available": "No sessions available",
+  "sign_in_method": "Sign-in Method",
+  "user_id": "UserID",
+  "user_no_activity": "This user does not have any activity.",
+  "user_no_sessions": "This user does not have any active sessions."
 }
