@@ -1,19 +1,17 @@
 import { buttonVariants } from '@/components/ui/button';
+import { getSession } from '@/lib/auth/session';
 import { getT } from 'next-i18next/server';
-import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default async function Home() {
-  const { t } = await getT('home');
-
-  //TODO: Implement session check and redirect if user is already logged in
-  /*   const session = await auth.api.getSession({ headers: await headers() });
-
+  const session = await getSession();
   if (session) {
     redirect('/dashboard');
-  } */
+  }
+
+  const { t } = await getT('home');
 
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
@@ -23,7 +21,7 @@ export default async function Home() {
             <div className="flex flex-col items-center gap-1 text-center">
               <h1 className="text-2xl font-bold">{t('welcome')}</h1>
             </div>
-            <Link href="/dashboard" /*TODO: Add redirect logic*/ className={buttonVariants()}>
+            <Link href="/login" className={buttonVariants()}>
               {t('login')}
             </Link>
           </div>

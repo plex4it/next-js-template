@@ -1,29 +1,33 @@
 {
-  "addSuccess": "Utilizador adicionado",
-  "addTitle": "Adicionar utilizador",
-  "columns": {
-    "email": "Email",
-    "name": "Nome",
-    "role": "Perfil",
-    "status": "Estado"
-  },
-  "empty": "Sem utilizadores",
-  "fields": {
-    "email": "Email",
-    "firstName": "Nome",
-    "lastName": "Apelido",
-    "role": "Perfil",
-    "status": "Estado"
-  },
-  "roles": {
-    "admin": "Admin",
-    "member": "Membro",
-    "viewer": "Leitor"
-  },
-  "searchPlaceholder": "Pesquisar utilizadores…",
-  "status": {
-    "active": "Ativo",
-    "inactive": "Inativo"
-  },
-  "title": "Utilizadores"
+  "activity": "atividade",
+  "activity_not_available": "Não existe atividade",
+  "add_modal_description": "Preencha o formulário para criar um novo utilizador",
+  "add_modal_title": "Adicionar um utilizador",
+  "back_to_page": "voltar para utilizadores",
+  "delete_modal_description": "O utilizador {{name}} será removido permanentemente. Esta ação não pode ser desfeita.",
+  "delete_modal_title": "Eliminar este utilizador?",
+  "details_delete_description": "Assim que eliminar este utilizador, não poderá voltar atrás.",
+  "details_delete_title": "Eliminar utilizador",
+  "edit_title": "Editar utilizador",
+  "email_address": "endereço de email",
+  "error_creating": "Erro ao criar o utilizador",
+  "error_deleting": "Erro ao eliminar o utilizador",
+  "error_updating": "Erro ao atualizar o utilizador",
+  "items_not_available": "Não existem utilizadores disponíveis",
+  "items_not_created": "Ainda não criou nenhum utilizador.",
+  "notify_added": "Utilizador adicionado",
+  "notify_deleted": "Utilizador {{name}} eliminado",
+  "notify_password_reset": "Reposição da palavra-passe feita com sucesso",
+  "notify_updated": "Utilizador atualizado.",
+  "page_title": "Utilizadores",
+  "password": "palavra-passe",
+  "profile_details": "Detalhes de perfil",
+  "reset_password": "repor palavra-passe",
+  "security": "Segurança",
+  "sessions": "Sessões",
+  "sessions_not_available": "Não existem sessões disponíveis",
+  "sign_in_method": "Método de autenticação",
+  "user_id": "ID de utilizador",
+  "user_no_activity": "Este utilizador não tem atividade.",
+  "user_no_sessions": "Este utilizador não tem sessões."
 }

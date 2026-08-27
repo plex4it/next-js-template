@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Sidebar,
   SidebarContent,
@@ -9,14 +11,22 @@ import {
 import { NavMain } from '@/components/sidebar/nav-main';
 import { NavUser } from '@/components/sidebar/nav-user';
 import { SidebarLogo } from '@/components/sidebar/sidebar-logo';
+import { useRouter } from 'next/navigation';
 
-const MOCK_USER = {
-  firstName: 'Ricardo',
-  lastName: 'Soares',
-  email: 'ricardo.soares@plexit.pt',
-};
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ firstName, lastName, email, ...props }: AppSidebarProps) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    router.replace('/api/auth/logout');
+    return;
+  };
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -30,11 +40,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser
-          firstName={MOCK_USER.firstName}
-          lastName={MOCK_USER.lastName}
-          email={MOCK_USER.email}
-        />
+        <NavUser firstName={firstName} lastName={lastName} email={email} onLogout={handleLogout} />
       </SidebarFooter>
     </Sidebar>
   );

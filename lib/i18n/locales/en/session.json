@@ -1,0 +1,7 @@
+{
+  "device": "Device",
+  "last_access": "Last accessed",
+  "location": "Location",
+  "sign_out": "Sign out",
+  "signout_success": "Successfully signed out"
+}
