@@ -1,10 +1,8 @@
 import { prismaAdapter } from '@better-auth/prisma-adapter';
 import { betterAuth } from 'better-auth/minimal';
 import { genericOAuth, keycloak } from 'better-auth/plugins';
-import { getAuthEnv } from '@/lib/auth/env';
+import { env } from '@/env';
 import { prisma } from '@/lib/db/prisma';
-
-const { kcClientId, kcClientSecret, kcIssuer } = getAuthEnv();
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -33,9 +31,9 @@ export const auth = betterAuth({
     genericOAuth({
       config: [
         keycloak({
-          clientId: kcClientId,
-          clientSecret: kcClientSecret,
-          issuer: kcIssuer,
+          clientId: env.KC_CLIENT_ID || 'build-placeholder',
+          clientSecret: env.KC_CLIENT_SECRET || 'build-placeholder',
+          issuer: env.KC_ISSUER || 'http://localhost:8085/realms/build',
           scopes: ['openid', 'profile', 'email', 'offline_access'],
         }),
       ],

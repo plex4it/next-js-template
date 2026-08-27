@@ -1,8 +1,8 @@
 'use server';
 
 import { headers } from 'next/headers';
+import { env } from '@/env';
 import { auth } from '@/lib/auth/auth';
-import { getApiUrl } from '@/lib/auth/env';
 import { requireSession } from '@/lib/auth/session';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -24,7 +24,7 @@ async function getAccessToken(userId: string) {
 }
 
 export async function apiRequest(path: string, method: HttpMethod, data?: object) {
-  const apiUrl = getApiUrl();
+  const apiUrl = env.API_URL;
   const session = await requireSession();
   const accessToken = await getAccessToken(session.user.id);
 

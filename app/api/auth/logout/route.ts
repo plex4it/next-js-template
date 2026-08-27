@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { env } from '@/env';
 import { auth } from '@/lib/auth/auth';
-import { getAuthEnv } from '@/lib/auth/env';
 import { prisma } from '@/lib/db/prisma';
 
 async function getIdToken(userId: string): Promise<string | null> {
@@ -18,7 +18,7 @@ async function getIdToken(userId: string): Promise<string | null> {
 }
 
 function redirectHome(request: NextRequest) {
-  const origin = process.env.BETTER_AUTH_URL || request.nextUrl.origin;
+  const origin = env.BETTER_AUTH_URL || request.nextUrl.origin;
   return NextResponse.redirect(origin);
 }
 
@@ -38,11 +38,10 @@ export async function GET(request: NextRequest) {
     return redirectHome(request);
   }
 
-  const { kcIssuer, kcClientId } = getAuthEnv();
-  const origin = process.env.BETTER_AUTH_URL || request.nextUrl.origin;
+  const origin = env.BETTER_AUTH_URL || request.nextUrl.origin;
 
-  const keycloakLogoutUrl = new URL(`${kcIssuer}/protocol/openid-connect/logout`);
-  keycloakLogoutUrl.searchParams.set('client_id', kcClientId);
+  const keycloakLogoutUrl = new URL(`${env.KC_ISSUER}/protocol/openid-connect/logout`);
+  keycloakLogoutUrl.searchParams.set('client_id', env.KC_CLIENT_ID);
   keycloakLogoutUrl.searchParams.set('post_logout_redirect_uri', origin);
   keycloakLogoutUrl.searchParams.set('id_token_hint', idToken);
 
