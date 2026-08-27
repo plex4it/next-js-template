@@ -11,7 +11,7 @@ import {
 import { NavMain } from '@/components/sidebar/nav-main';
 import { NavUser } from '@/components/sidebar/nav-user';
 import { SidebarLogo } from '@/components/sidebar/sidebar-logo';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   firstName: string;
@@ -20,8 +20,10 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 }
 
 export function AppSidebar({ firstName, lastName, email, ...props }: AppSidebarProps) {
+  const router = useRouter();
+
   const handleLogout = () => {
-    redirect('/api/auth/logout');
+    router.replace('/api/auth/logout');
   };
 
   return (
