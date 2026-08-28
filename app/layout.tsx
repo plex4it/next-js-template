@@ -33,12 +33,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { i18n } = await getT();
-  const resources = getResources(i18n);
+  const { i18n, lng } = await getT();
+  const resources = getResources(i18n, undefined, [lng, i18nConfig.fallbackLng]);
 
   return (
     <html
-      lang={i18n.language}
+      lang={lng}
       suppressHydrationWarning
       className={cn(
         'h-full',
@@ -57,7 +57,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <I18nProvider resources={resources} language={i18n.language}>
+            <I18nProvider resources={resources} language={lng}>
               {children}
               <Toaster position="bottom-right" />
             </I18nProvider>
