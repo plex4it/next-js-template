@@ -7,13 +7,13 @@ import {
 } from 'lucide-react';
 
 interface NavRoute {
-  title: string;
+  titleKey: string;
   url: string;
   icon?: LucideIcon;
 }
 
 interface NavGroup {
-  title?: string;
+  titleKey?: string;
   routes: NavRoute[];
 }
 
@@ -21,32 +21,32 @@ export const groups: NavGroup[] = [
   {
     routes: [
       {
-        title: 'Dashboard',
+        titleKey: 'breadcrumbs:dashboard',
         url: '/dashboard',
         icon: LayoutDashboardIcon,
       },
     ],
   },
   {
-    title: 'Pages',
+    titleKey: 'breadcrumbs:pages',
     routes: [
       {
-        title: 'Products',
+        titleKey: 'breadcrumbs:products',
         url: '/pages/products',
         icon: StickyNoteIcon,
       },
     ],
   },
   {
-    title: 'Administration',
+    titleKey: 'breadcrumbs:admin',
     routes: [
       {
-        title: 'Users',
+        titleKey: 'breadcrumbs:users',
         url: '/admin/users',
         icon: UsersRoundIcon,
       },
       {
-        title: 'Roles',
+        titleKey: 'breadcrumbs:roles',
         url: '/admin/roles',
         icon: UserKeyIcon,
       },
