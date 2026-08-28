@@ -42,3 +42,17 @@ flowchart TD
   start --> i18n{i18n string?}
   i18n -->|yes| locales["lib/i18n/locales/{en,pt}/{namespace}.json"]
 ```
+
+## Route patterns for new features
+
+All new features live under `app/(protected)/` and inherit session guard, sidebar, and breadcrumbs from the layout.
+
+| Pattern       | Example                           | Files                                                                |
+| ------------- | --------------------------------- | -------------------------------------------------------------------- |
+| Single page   | `/projects`                       | `projects/page.tsx` + optional `loading.tsx`                         |
+| Nested group  | `/imports/bmecat`, `/imports/xml` | `imports/bmecat/page.tsx`, shared `imports/layout.tsx` optional      |
+| List + table  | `/projects` with datatable        | `page.tsx` + `_components/table-wrapper.tsx`, columns, actions       |
+| Detail + tabs | `/projects/[id]/overview`         | `[id]/layout.tsx`, `[id]/page.tsx` → redirect, `[id]/{tab}/page.tsx` |
+| Client-heavy  | upload wizards, live forms        | `_components/` with `'use client'` wrappers                          |
+
+**Do not** put new features under `admin/` unless they are admin concerns. `admin/` is reserved for template CRUD (users, roles).
