@@ -1,0 +1,22 @@
+{
+  "add_modal_title": "Add {{LABEL}}",
+  "back_to_page": "back to {{LABEL}}",
+  "created_at": "Created at",
+  "created_by": "Created by",
+  "delete_modal_description": "This will permanently remove {{LABEL}} {{name}}. This action cannot be undone.",
+  "delete_modal_title": "Delete this {{LABEL}}?",
+  "details_delete_description": "Once you delete this {{LABEL}}, there is no going back.",
+  "details_delete_title": "Delete {{LABEL}}",
+  "details_title": "{{LABEL}} details",
+  "edit_title": "Edit {{LABEL}}",
+  "error_creating": "Error creating the {{LABEL}}",
+  "error_deleting": "Error deleting the {{LABEL}}",
+  "error_updating": "Error updating the {{LABEL}}",
+  "items_not_available": "No {{LABEL}} available",
+  "items_not_created": "You haven't created any {{LABEL}} yet.",
+  "layout_id": "ID",
+  "notify_added": "{{LABEL}} added",
+  "notify_deleted": "{{LABEL}} {{name}} deleted",
+  "notify_updated": "{{LABEL}} updated.",
+  "page_title": "{{LABEL}}"
+}
