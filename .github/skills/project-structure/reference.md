@@ -182,7 +182,11 @@ app/(protected)/
 └── @breadcrumbs/
     ├── default.tsx                     # returns null
     ├── [...catchAll]/page.tsx          # static — handles most feature routes
-    └── {feature}/[id]/[tab]/page.tsx   # dynamic — detail pages with API data
+    ├── admin/default.tsx               # slot fallback for soft nav
+    └── {feature}/[id]/
+        ├── default.tsx
+        ├── overview/page.tsx           # mirror each tab from main app
+        └── {tab}/page.tsx              # one page per tab, not [tab] dynamic
 ```
 
 ### Static breadcrumbs
@@ -274,20 +278,24 @@ export async function ProjectDetailBreadcrumb({ id, tab }: ProjectDetailBreadcru
 export { ProjectDetailBreadcrumb } from './project-detail-breadcrumb';
 ```
 
-#### Step 3 — slot page
+#### Step 3 — slot pages
 
-`app/(protected)/@breadcrumbs/projects/[id]/[tab]/page.tsx`
+Mirror each tab folder from the main app under `@breadcrumbs`. Example for overview:
+
+`app/(protected)/@breadcrumbs/projects/[id]/overview/page.tsx`
 
 ```tsx
 import { ProjectDetailBreadcrumb } from '@/components/breadcrumbs';
 
-type Props = { params: Promise<{ id: string; tab: string }> };
+type Props = { params: Promise<{ id: string }> };
 
-export default async function ProjectBreadcrumbsSlot({ params }: Props) {
-  const { id, tab } = await params;
-  return <ProjectDetailBreadcrumb id={id} tab={tab} />;
+export default async function ProjectOverviewBreadcrumbsSlot({ params }: Props) {
+  const { id } = await params;
+  return <ProjectDetailBreadcrumb id={id} tab="overview" />;
 }
 ```
+
+Add one slot page per tab (`settings/page.tsx`, etc.). Do not use a single `[tab]` dynamic page — it breaks parallel route matching.
 
 #### Step 4 — redirect-only `[id]` route
 

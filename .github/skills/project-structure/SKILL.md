@@ -119,7 +119,7 @@ For routes like `/projects/42/overview` where breadcrumb needs API data.
 
 1. Create `components/breadcrumbs/{feature}-detail-breadcrumb.tsx` — fetch entity, build `BreadcrumbItem[]`, return `<Breadcrumbs />`
 2. Export from `components/breadcrumbs/index.ts`
-3. Create slot page `app/(protected)/@breadcrumbs/{feature}/[id]/[tab]/page.tsx`
+3. Create one slot page per tab under `app/(protected)/@breadcrumbs/{feature}/[id]/{tab}/page.tsx` — mirror main app tab folders exactly
 4. Map tab slugs to i18n keys inside the breadcrumb component
 5. If `[id]/page.tsx` redirects to a tab, add redirect pattern to `components/breadcrumbs/redirect-routes.ts`
 
@@ -179,7 +179,7 @@ Last item = current page (no `href`). Parent labels without `href` render as pla
 1. List page + `_components/` (table-wrapper, columns, actions) — mirror pattern from `admin/users` list, but under your feature path
 2. `[id]/layout.tsx` fetches entity, `[id]/page.tsx` redirects to default tab
 3. `lib/api/{entity}/`, `lib/types/{entity}/`, i18n namespace
-4. Dynamic breadcrumb component + `@breadcrumbs/{feature}/[id]/[tab]/page.tsx`
+4. Dynamic breadcrumb component + `@breadcrumbs/{feature}/[id]/{tab}/page.tsx` per tab
 
 ### Client-heavy feature (imports, wizards)
 
