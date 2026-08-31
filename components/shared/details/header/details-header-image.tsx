@@ -15,11 +15,13 @@ export function DetailsHeaderImage({
   imageSrc,
 }: Readonly<DetailsHeaderImageProps>) {
   return (
-    <UserAvatar
-      className={cn('h-20 w-20', className)}
-      firstName={firstName}
-      lastName={lastName}
-      imageSrc={imageSrc}
-    />
+    <div className="relative z-0 shrink-0">
+      <UserAvatar
+        className={cn('z-0 h-20 w-20', className)}
+        firstName={firstName}
+        lastName={lastName}
+        imageSrc={imageSrc}
+      />
+    </div>
   );
 }

@@ -45,14 +45,11 @@ export default async function UsersEditLayout({
         <Details>
           <Details.Header className="pb-0">
             <Details.Info>
-              <div className="relative">
-                <Details.Image
-                  firstName={userDetails.firstName}
-                  lastName={userDetails.lastName}
-                  imageSrc=""
-                  className="h-20 w-20"
-                />
-              </div>
+              <Details.Image
+                firstName={userDetails.firstName}
+                lastName={userDetails.lastName}
+                imageSrc=""
+              />
               <Details.InfoContent className="gap-1">
                 <Details.InfoTitle title={`${userDetails.firstName} ${userDetails.lastName}`} />
                 <Details.InfoSubTitle>
