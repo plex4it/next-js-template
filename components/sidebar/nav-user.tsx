@@ -33,7 +33,7 @@ interface NavUserProps {
 const Footer = React.forwardRef<
   HTMLButtonElement,
   Readonly<NavUserProps> & React.ComponentPropsWithoutRef<typeof SidebarMenuButton>
->(({ firstName, lastName, email, onLogout, ...props }, ref) => {
+>(({ firstName, lastName, email, ...props }, ref) => {
   return (
     <SidebarMenuButton
       ref={ref}
