@@ -1,6 +1,5 @@
 {
   "error_digest": "Error ID: {{digest}}",
-  "error_loading": "Error loading data",
   "generic": "An error occurred",
   "go_home": "Go home",
   "not_found_description": "The page you're looking for doesn't exist or has been moved.",

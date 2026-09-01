@@ -1,6 +1,11 @@
 {
+  "atleast_one_role": "Selecione pelo menos um perfil",
   "code_maximum_characters": "O código não deve exceder o número máximo de caracteres",
   "description_maximum_characters": "A descrição não deve exceder o número máximo de caracteres",
+  "email_already_exists": "Este email já está em uso",
   "field_required": "Este campo é obrigatório",
-  "name_maximum_characters": "O nome não deve exceder o número máximo de caracteres"
+  "first_name_maximum_characters": "O primeiro nome não deve exceder {{number}} caracteres",
+  "last_name_maximum_characters": "O último nome não deve exceder {{number}} caracteres",
+  "name_maximum_characters": "O nome não deve exceder o número máximo de caracteres",
+  "select_user": "Selecione um utilizador válido"
 }

@@ -1,6 +1,11 @@
 {
+  "atleast_one_role": "Select at least one role",
   "code_maximum_characters": "Code must not exceed the maximum number of characters",
   "description_maximum_characters": "Description must not exceed the maximum number of characters",
+  "email_already_exists": "This email is already in use",
   "field_required": "This field is required",
-  "name_maximum_characters": "Name must not exceed the maximum number of characters"
+  "first_name_maximum_characters": "First name must not exceed {{number}} characters",
+  "last_name_maximum_characters": "Last name must not exceed {{number}} characters",
+  "name_maximum_characters": "Name must not exceed the maximum number of characters",
+  "select_user": "Select a valid user"
 }
