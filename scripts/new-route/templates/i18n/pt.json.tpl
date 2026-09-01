@@ -1,0 +1,22 @@
+{
+  "add_modal_title": "Adicionar {{LABEL}}",
+  "back_to_page": "voltar para {{LABEL}}",
+  "created_at": "Criado em",
+  "created_by": "Criado por",
+  "delete_modal_description": "{{LABEL}} {{name}} será removido permanentemente. Esta ação não pode ser desfeita.",
+  "delete_modal_title": "Eliminar este {{LABEL}}?",
+  "details_delete_description": "Assim que eliminar este {{LABEL}}, não poderá voltar atrás.",
+  "details_delete_title": "Eliminar {{LABEL}}",
+  "details_title": "Detalhes de {{LABEL}}",
+  "edit_title": "Editar {{LABEL}}",
+  "error_creating": "Erro ao criar {{LABEL}}",
+  "error_deleting": "Erro ao eliminar {{LABEL}}",
+  "error_updating": "Erro ao atualizar {{LABEL}}",
+  "items_not_available": "Não existem {{LABEL}} disponíveis",
+  "items_not_created": "Ainda não criou nenhum {{LABEL}}.",
+  "layout_id": "ID",
+  "notify_added": "{{LABEL}} adicionado",
+  "notify_deleted": "{{LABEL}} {{name}} eliminado",
+  "notify_updated": "{{LABEL}} atualizado.",
+  "page_title": "{{LABEL}}"
+}
