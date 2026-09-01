@@ -23,6 +23,8 @@ model User {
   firstName String  @default("")
   lastName  String  @default("")
 
+  permissions String[] @default([])
+
   @@unique([email])
   @@map("user")
   @@schema("auth")
