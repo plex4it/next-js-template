@@ -3,37 +3,46 @@
 import { Table, TableMobileDataCard } from '@/components/shared/table';
 import { getRolesUsersDatatableColumns } from './roles-users-datatable-columns';
 import { UserRoundXIcon } from 'lucide-react';
-import { IUser } from '@/lib/types/user/user';
 import { CursorPaginatedList } from '@/lib/types/cursor-paginated-list';
 import { MobileCardTemplate } from './mobile-card-template';
 import { useT } from 'next-i18next/client';
+import { ListRoleUsersResponse } from '@/lib/types/roles/response/list-role-users-response';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Result } from '@/lib/api/utils';
 
 interface TableWrapperProps {
-  users: IUser[];
-  roleId: string;
+  users: ListRoleUsersResponse[];
+  roleId: bigint;
 }
 
-export function TableWrapper({ users, roleId }: Readonly<TableWrapperProps>) {
-  const { t } = useT(['users', 'common', 'roles']);
+export function TableWrapper({ roleId, users }: Readonly<TableWrapperProps>) {
+  const isMobile = useIsMobile();
+  const { t } = useT(['users', 'roles']);
+
   const columns = getRolesUsersDatatableColumns(roleId, t);
+
   const getItems = async (
-    _search: string | null,
-    _pageSize: number,
-    _cursor: string | null
-  ): Promise<CursorPaginatedList<IUser>> => {
-    return { hasNextPage: false, items: users, nextCursor: null };
+    search: string | null,
+    pageSize: number,
+    cursor: string | null
+  ): Promise<Result<CursorPaginatedList<ListRoleUsersResponse>>> => {
+    void pageSize;
+    void cursor;
+    if (search) {
+      const s = search.toLowerCase();
+      const filtered = users.filter(
+        (u) => u.firstName.toLowerCase().includes(s) || u.lastName.toLowerCase().includes(s)
+      );
+
+      return { ok: true, data: { hasNextPage: false, items: filtered, nextCursor: null } };
+    }
+
+    return { ok: true, data: { hasNextPage: false, items: users, nextCursor: null } };
   };
 
   return (
     <>
-      <div className="hidden lg:block">
-        <Table
-          columns={columns}
-          getItems={getItems}
-          emptyMessage={t('users:items_not_available')}
-        />
-      </div>
-      <div className="block lg:hidden space-y-4">
+      {isMobile ? (
         <TableMobileDataCard
           template={(user) => <MobileCardTemplate roleId={roleId} user={user} />}
           getItems={getItems}
@@ -41,7 +50,9 @@ export function TableWrapper({ users, roleId }: Readonly<TableWrapperProps>) {
           emptyIcon={UserRoundXIcon}
           emptyTitle={t('roles:no_users_assign')}
         />
-      </div>
+      ) : (
+        <Table columns={columns} getItems={getItems} emptyMessage={t('roles:no_users_assign')} />
+      )}
     </>
   );
 }

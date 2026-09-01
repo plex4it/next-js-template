@@ -17,9 +17,16 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   firstName: string;
   lastName: string;
   email: string;
+  userPermissions: string[];
 }
 
-export function AppSidebar({ firstName, lastName, email, ...props }: AppSidebarProps) {
+export function AppSidebar({
+  firstName,
+  lastName,
+  email,
+  userPermissions,
+  ...props
+}: AppSidebarProps) {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -37,7 +44,7 @@ export function AppSidebar({ firstName, lastName, email, ...props }: AppSidebarP
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain />
+        <NavMain userPermissions={userPermissions} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser firstName={firstName} lastName={lastName} email={email} onLogout={handleLogout} />

@@ -4,13 +4,13 @@ import { ColumnDef } from '@tanstack/react-table';
 import type { DataTableFeatures } from '@/components/shared/data-table';
 import { UserAvatar } from '@/components/sidebar/user/user-avatar';
 import { UnassignModal } from './unassign-modal';
-import { IUser } from '@/lib/types/user/user';
+import { ListRoleUsersResponse } from '@/lib/types/roles/response/list-role-users-response';
 import { TFunction } from 'i18next';
 
 export function getRolesUsersDatatableColumns(
-  roleId: string,
+  roleId: bigint,
   t: TFunction<[string, string], undefined>
-): ColumnDef<DataTableFeatures, IUser>[] {
+): ColumnDef<DataTableFeatures, ListRoleUsersResponse>[] {
   return [
     {
       id: 'user',

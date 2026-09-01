@@ -16,12 +16,12 @@ export function DeleteUserModal({ id, firstName, lastName }: Readonly<DeleteUser
   const { t } = useT(['users', 'common']);
   const router = useRouter();
   const confirm = async () => {
-    try {
-      await deleteUser(id);
+    const result = await deleteUser(id);
+    if (!result.ok) {
+      toast.error(result.message);
+    } else {
       toast.success(t('users:notify_deleted', { name: `${firstName} ${lastName}` }));
       router.replace('/admin/users');
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t('users:error_deleting'));
     }
   };
   return (

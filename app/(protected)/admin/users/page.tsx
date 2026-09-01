@@ -2,9 +2,12 @@ import { Page } from '@/components/shared/pages-layout';
 import { UsersRoundIcon } from 'lucide-react';
 import PageActionsWrapper from './_components/page-actions-wrapper';
 import { TableWrapper } from './_components/table-wrapper';
+import { requirePermission } from '@/lib/auth/session';
+import { permissions } from '@/lib/permissions/permissions';
 import { getT } from 'next-i18next/server';
 
 export default async function UsersPage() {
+  await requirePermission(permissions.users.read);
   const { t } = await getT('users');
 
   return (

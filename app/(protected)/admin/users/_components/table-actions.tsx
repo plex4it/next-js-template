@@ -7,30 +7,37 @@ import { EyeIcon, Trash2Icon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { TFunction } from 'i18next';
+import { UsersPermissionHandler } from '@/lib/permissions/handlers/users-permission-handler';
 
 export function getActionMenuItems(
   user: ListUserResponse,
   t: TFunction<[string, string], undefined>,
   navigate: (href: string) => void
 ) {
+  const handler = UsersPermissionHandler.getInstance();
   const onDelete = async () => {
-    try {
-      await deleteUser(user.id);
+    const result = await deleteUser(user.id);
+    if (!result.ok) {
+      toast.error(result.message);
+    } else {
       toast.success(t('users:notify_deleted', { name: `${user.firstName} ${user.lastName}` }));
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t('users:error_deleting'));
     }
   };
 
-  const items: ActionItem[] = [
-    {
+  const items: ActionItem[] = [];
+
+  if (handler.canReadDetails()) {
+    items.push({
       label: t('common:view'),
       icon: <EyeIcon className="size-4" />,
       onSelect: () => {
         navigate(`/admin/users/${user.id}`);
       },
-    },
-    {
+    });
+  }
+
+  if (handler.canDelete()) {
+    items.push({
       label: t('common:delete'),
       icon: <Trash2Icon className="size-4" />,
       variant: 'destructive',
@@ -41,8 +48,8 @@ export function getActionMenuItems(
           name: `${user.firstName} ${user.lastName}`,
         }),
       },
-    },
-  ];
+    });
+  }
 
   return items;
 }

@@ -11,6 +11,7 @@ import { CursorPaginatedList } from '@/lib/types/cursor-paginated-list';
 import useDebounce from '@/hooks/use-debounce';
 import { ErrorState } from '@/components/shared/error-state';
 import { useT } from 'next-i18next/client';
+import { Result } from '@/lib/api/utils';
 
 interface TableProps<T extends DataTableRowData> {
   className?: string;
@@ -18,7 +19,7 @@ interface TableProps<T extends DataTableRowData> {
     search: string | null,
     pageSize: number,
     cursor: string | null
-  ) => Promise<CursorPaginatedList<T>>;
+  ) => Promise<Result<CursorPaginatedList<T>>>;
   columns: ColumnDef<DataTableFeatures, T>[];
   emptyMessage?: string;
 }
@@ -56,17 +57,18 @@ export function Table<T extends DataTableRowData>({
     async (cursor: string | null, pageSize: number, search: string, showLoading = true) => {
       if (showLoading) setIsLoading(true);
       setError(null);
-      try {
-        const result = await getItems(search, pageSize, cursor);
-        setPage(result);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : t('errors:generic'));
+      const result = await getItems(search, pageSize, cursor);
+
+      if (!result.ok) {
+        setError(result.message);
         setPage(null);
-      } finally {
-        if (showLoading) setIsLoading(false);
+      } else {
+        setPage(result.data);
       }
+
+      if (showLoading) setIsLoading(false);
     },
-    [getItems, t]
+    [getItems]
   );
 
   useEffect(() => {

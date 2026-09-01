@@ -15,3 +15,19 @@ export async function requireSession(): Promise<Session> {
   }
   return session;
 }
+
+export async function getPermissions() {
+  return (await requireSession()).user.permissions;
+}
+
+export async function hasPermission(permission: string) {
+  const permissions = (await requireSession()).user.permissions;
+  return permissions.includes(permission);
+}
+
+export async function requirePermission(permission: string) {
+  const allowed = await hasPermission(permission);
+  if (!allowed) {
+    redirect('/forbidden');
+  }
+}

@@ -11,6 +11,7 @@ interface EditUserModalProps {
   firstName: string;
   lastName: string;
   status: boolean;
+  roles: string[];
   enabled: boolean;
 }
 
@@ -20,11 +21,20 @@ export const UsersEditModal = ({
   lastName,
   enabled,
   status,
+  roles,
 }: Readonly<EditUserModalProps>) => {
   const { t } = useT(['users', 'common']);
   return (
     <ModalForm
-      form={<UsersEditForm id={id} firstName={firstName} lastName={lastName} status={status} />}
+      form={
+        <UsersEditForm
+          id={id}
+          firstName={firstName}
+          lastName={lastName}
+          status={status}
+          roles={roles}
+        />
+      }
       title={t('users:edit_title')}
       trigger={
         <Button aria-label={t('users:edit_title')} disabled={!enabled}>

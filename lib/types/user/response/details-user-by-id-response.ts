@@ -4,6 +4,7 @@ export interface DetailsUserByIdResponse {
   lastName: string;
   email: string;
   externalId: string;
+  roles: string[];
   status: boolean;
   updatedAt: string;
   updatedBy: string;

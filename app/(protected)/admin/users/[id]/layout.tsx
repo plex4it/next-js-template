@@ -7,6 +7,7 @@ import Link from 'next/link';
 import getUserDetails from '@/lib/api/users/get-user-details';
 import { notFound } from 'next/navigation';
 import { getT } from 'next-i18next/server';
+import { ErrorState } from '@/components/shared/error-state';
 
 export default async function UsersEditLayout({
   children,
@@ -18,19 +19,27 @@ export default async function UsersEditLayout({
   const { t } = await getT('users');
   const { id } = await params;
 
-  let userDetails;
   let userId;
 
   try {
     userId = BigInt(id);
-    userDetails = await getUserDetails(userId);
   } catch {
     notFound();
   }
 
-  if (!userDetails) {
-    notFound();
+  const result = await getUserDetails(userId);
+
+  if (!result.ok) {
+    return (
+      <Page>
+        <Page.Content>
+          <ErrorState description={result.message} />
+        </Page.Content>
+      </Page>
+    );
   }
+
+  const userDetails = result.data;
 
   return (
     <Page>

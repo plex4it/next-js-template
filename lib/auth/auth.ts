@@ -25,6 +25,11 @@ export const auth = betterAuth({
         required: true,
         defaultValue: '',
       },
+      permissions: {
+        type: 'string[]',
+        required: true,
+        defaultValue: [] as string[],
+      },
     },
   },
   plugins: [
@@ -35,6 +40,7 @@ export const auth = betterAuth({
           clientSecret: env.KC_CLIENT_SECRET || 'build-placeholder',
           issuer: env.KC_ISSUER || 'http://localhost:8085/realms/build',
           scopes: ['openid', 'profile', 'email', 'offline_access'],
+          overrideUserInfo: true,
         }),
       ],
     }),

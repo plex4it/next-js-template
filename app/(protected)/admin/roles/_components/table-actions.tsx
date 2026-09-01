@@ -7,30 +7,37 @@ import { EyeIcon, Trash2Icon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { TFunction } from 'i18next';
+import { RolesPermissionHandler } from '@/lib/permissions/handlers/roles-permission-handler';
 
 export function getActionMenuItems(
   role: ListRolesResponse,
   t: TFunction<[string, string], undefined>,
   navigate: (href: string) => void
 ) {
+  const handler = RolesPermissionHandler.getInstance();
   const onDelete = async () => {
-    try {
-      await deleteRole(role.id);
+    const result = await deleteRole(role.id);
+    if (!result.ok) {
+      toast.error(result.message);
+    } else {
       toast.success(t('roles:notify_deleted', { name: role.name }));
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t('roles:error_deleting'));
     }
   };
 
-  const items: ActionItem[] = [
-    {
+  const items: ActionItem[] = [];
+
+  if (handler.canReadDetails()) {
+    items.push({
       label: t('common:view'),
       icon: <EyeIcon className="size-4" />,
       onSelect: () => {
         navigate(`/admin/roles/${role.id}`);
       },
-    },
-    {
+    });
+  }
+
+  if (handler.canDelete()) {
+    items.push({
       label: t('common:delete'),
       icon: <Trash2Icon className="size-4" />,
       variant: 'destructive',
@@ -39,8 +46,8 @@ export function getActionMenuItems(
         title: t('roles:delete_modal_title'),
         description: t('roles:delete_modal_description', { name: role.name }),
       },
-    },
-  ];
+    });
+  }
 
   return items;
 }

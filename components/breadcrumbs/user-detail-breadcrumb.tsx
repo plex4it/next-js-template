@@ -23,12 +23,12 @@ export async function UserDetailBreadcrumb({ id, tab }: UserDetailBreadcrumbProp
   let userDetails;
 
   try {
-    userDetails = await getUserDetails(BigInt(id));
+    const result = await getUserDetails(BigInt(id));
+    if (!result.ok) {
+      notFound();
+    }
+    userDetails = result.data;
   } catch {
-    notFound();
-  }
-
-  if (!userDetails) {
     notFound();
   }
 

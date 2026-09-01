@@ -7,7 +7,7 @@ import EmptyWrapper from '@/components/shared/empty-wrapper';
 import { Spinner } from '@/components/ui/spinner';
 import { TableMobileCardLoading } from '@/components/shared/table/table-mobile-card-loading';
 import { ErrorState } from '@/components/shared/error-state';
-import { useT } from 'next-i18next/client';
+import { Result } from '@/lib/api/utils';
 
 interface TableMobileDataCardProps<T> {
   template: (item: T) => JSX.Element;
@@ -15,7 +15,7 @@ interface TableMobileDataCardProps<T> {
     search: string | null,
     pageSize: number,
     cursor: string | null
-  ) => Promise<CursorPaginatedList<T>>;
+  ) => Promise<Result<CursorPaginatedList<T>>>;
   emptyTitle: string;
   emptyIcon: LucideIcon;
   emptyDescription: string;
@@ -30,7 +30,6 @@ export function TableMobileDataCard<T>({
   emptyIcon,
   emptyTitle,
 }: Readonly<TableMobileDataCardProps<T>>) {
-  const { t } = useT('errors');
   const [page, setPage] = useState<CursorPaginatedList<T> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,24 +47,25 @@ export function TableMobileDataCard<T>({
       if (showLoading) setIsLoading(true);
       if (append) setIsFetchingMore(true);
       setError(null);
-      try {
-        const result = await getItems(search, pageSize, cursor);
+      const result = await getItems(search, pageSize, cursor);
+
+      if (!result.ok) {
+        setError(result.message);
+        setPage(null);
+      } else {
         setPage((prev) => {
           return {
-            items: append ? [...(prev?.items ?? []), ...result.items] : result.items,
-            hasNextPage: result.hasNextPage,
-            nextCursor: result.nextCursor,
+            items: append ? [...(prev?.items ?? []), ...result.data.items] : result.data.items,
+            hasNextPage: result.data.hasNextPage,
+            nextCursor: result.data.nextCursor,
           };
         });
-      } catch (err) {
-        setError(err instanceof Error ? err.message : t('errors:error_loading'));
-        setPage(null);
-      } finally {
-        if (showLoading) setIsLoading(false);
-        if (append) setIsFetchingMore(false);
       }
+
+      if (showLoading) setIsLoading(false);
+      if (append) setIsFetchingMore(false);
     },
-    [getItems, t]
+    [getItems]
   );
 
   useEffect(() => {

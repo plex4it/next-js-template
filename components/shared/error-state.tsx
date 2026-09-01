@@ -7,16 +7,18 @@ import { useT } from 'next-i18next/client';
 
 interface ErrorStateProps {
   description: string;
-  onRetry: () => void;
+  onRetry?: () => void;
 }
 
 export function ErrorState({ description, onRetry }: Readonly<ErrorStateProps>) {
   const { t } = useT('common');
   return (
     <EmptyWrapper description={description} title={t('common:ups')} icon={FrownIcon}>
-      <Button variant="outline" size="sm" onClick={onRetry}>
-        {t('common:retry')}
-      </Button>
+      {onRetry && (
+        <Button variant="outline" size="sm" onClick={onRetry}>
+          {t('common:retry')}
+        </Button>
+      )}
     </EmptyWrapper>
   );
 }

@@ -14,19 +14,21 @@ export default async function UsersSecurityPage({
   const { id } = await params;
   const { t } = await getT('users');
 
-  let userDetails;
   let userId;
 
   try {
     userId = BigInt(id);
-    userDetails = await getUserDetails(userId);
   } catch {
     notFound();
   }
 
-  if (!userDetails) {
+  const result = await getUserDetails(userId);
+
+  if (!result.ok) {
     notFound();
   }
+
+  const userDetails = result.data;
 
   const sessions = await getSessions(id);
 

@@ -7,6 +7,7 @@ import { ArrowLeftIcon } from 'lucide-react';
 import getRoleDetails from '@/lib/api/roles/get-role-details';
 import { notFound } from 'next/navigation';
 import { getT } from 'next-i18next/server';
+import { ErrorState } from '@/components/shared/error-state';
 
 interface EditPageProps {
   params: Promise<{ id: string }>;
@@ -24,12 +25,19 @@ export default async function EditPage({ params, children }: Readonly<EditPagePr
     notFound();
   }
 
-  let roleDetails;
-  try {
-    roleDetails = await getRoleDetails(roleId);
-  } catch {
-    notFound();
+  const result = await getRoleDetails(roleId);
+
+  if (!result.ok) {
+    return (
+      <Page>
+        <Page.Content>
+          <ErrorState description={result.message} />
+        </Page.Content>
+      </Page>
+    );
   }
+
+  const roleDetails = result.data;
 
   return (
     <Page>

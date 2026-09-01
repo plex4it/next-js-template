@@ -1,7 +1,7 @@
 'use client';
 
 import * as z from 'zod';
-import { useForm, UseFormReturn, DefaultValues } from 'react-hook-form';
+import { useForm, UseFormReturn, DefaultValues, UseFormSetError } from 'react-hook-form';
 import React, { createContext, useContext } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,7 @@ export function useFormContext() {
 }
 
 interface FormProps<TSchema extends z.ZodObject> {
-  onSubmit: (data: z.output<TSchema>) => void;
+  onSubmit: (data: z.output<TSchema>, setError: UseFormSetError<z.input<TSchema>>) => void;
   defaultValues?: DefaultValues<z.input<TSchema>>;
   children: React.ReactNode;
   className?: string;
@@ -43,7 +43,7 @@ export function Form<TSchema extends z.ZodObject>({
 
   return (
     <form
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={form.handleSubmit((data) => onSubmit(data, form.setError))}
       className={cn('flex min-h-0 flex-1 flex-col', className)}
     >
       <FormContext.Provider value={form}>{children}</FormContext.Provider>

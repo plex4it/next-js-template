@@ -10,10 +10,21 @@ function createQueryString(params: object): string {
 }
 
 export const api = {
-  get: (path: string, data?: object) =>
-    apiRequest(`${path}${data ? `?${createQueryString(data)}` : ''}`, 'GET'),
-  post: (path: string, data?: object) => apiRequest(path, 'POST', data),
-  put: (path: string, data?: object) => apiRequest(path, 'PUT', data),
-  patch: (path: string, data?: object) => apiRequest(path, 'PATCH', data),
-  delete: (path: string) => apiRequest(path, 'DELETE'),
+  get: <T>(path: string, data?: object, permission?: string) =>
+    apiRequest<T>(
+      `${path}${data ? `?${createQueryString(data)}` : ''}`,
+      'GET',
+      undefined,
+      permission
+    ),
+  post: <T>(path: string, data?: object, permission?: string) =>
+    apiRequest<T>(path, 'POST', data, permission),
+  put: <T>(path: string, data?: object, permission?: string) =>
+    apiRequest<T>(path, 'PUT', data, permission),
+  patch: <T>(path: string, data?: object, permission?: string) =>
+    apiRequest<T>(path, 'PATCH', data, permission),
+  delete: <T>(path: string, permission?: string) =>
+    apiRequest<T>(path, 'DELETE', undefined, permission),
 };
+
+export type { Result } from './client';

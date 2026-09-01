@@ -6,7 +6,6 @@ import { useModal } from '@/components/modal';
 import { FormFooter } from '@/components/shared/form/modal-form';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
-import { SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
 import { FormController } from '@/components/shared/form/form-controller';
@@ -29,19 +28,19 @@ export function EditRoleForm({ id, description }: Readonly<EditRoleFormProps>) {
       .optional(),
   });
 
-  const onEditRoleSubmit: SubmitHandler<z.infer<typeof schema>> = async (data) => {
+  const onEditRoleSubmit = async (data: z.infer<typeof schema>) => {
     setIsProcessing(true);
-    try {
-      await updateRole({
-        roleId: id,
-        description: data.description,
-      });
+    const result = await updateRole({
+      roleId: id,
+      description: data.description,
+    });
+    setIsProcessing(false);
+
+    if (!result.ok) {
+      toast.error(result.message);
+    } else {
       toast.success(t('roles:notify_updated'));
       modal.close();
-      setIsProcessing(false);
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t('roles:error_updating'));
-      setIsProcessing(false);
     }
   };
 

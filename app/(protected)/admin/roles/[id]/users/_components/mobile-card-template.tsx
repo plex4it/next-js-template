@@ -3,7 +3,7 @@
 import { Separator } from '@/components/ui/separator';
 import { Details } from '@/components/shared/details';
 import { UnassignModal } from './unassign-modal';
-import { IUser } from '@/lib/types/user/user';
+import { ListRoleUsersResponse } from '@/lib/types/roles/response/list-role-users-response';
 import { UserAvatar } from '@/components/sidebar/user/user-avatar';
 import { useT } from 'next-i18next/client';
 
@@ -26,8 +26,8 @@ function Entry({ label, value }: Readonly<EntryProps>) {
 }
 
 interface MobileCardTemplateProps {
-  roleId: string;
-  user: IUser;
+  roleId: bigint;
+  user: ListRoleUsersResponse;
 }
 
 export function MobileCardTemplate({ roleId, user }: Readonly<MobileCardTemplateProps>) {
@@ -51,7 +51,7 @@ export function MobileCardTemplate({ roleId, user }: Readonly<MobileCardTemplate
         <Entry label={t('fields:email')} value={user.email} />
         <Entry
           label={t('fields:identity_provider')}
-          value={user.idp ?? t('common:not_available')}
+          value={user.identityProvider ?? t('common:not_available')}
         />
       </Details.HeaderContent>
     </Details.Header>

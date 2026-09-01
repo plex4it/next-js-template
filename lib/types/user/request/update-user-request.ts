@@ -3,4 +3,5 @@ export interface UpdateUserRequest {
   firstName: string;
   lastName: string;
   status: boolean;
+  roles: bigint[];
 }

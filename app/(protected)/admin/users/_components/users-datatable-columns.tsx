@@ -3,15 +3,19 @@
 import { ColumnDef } from '@tanstack/react-table';
 import type { DataTableFeatures } from '@/components/shared/data-table';
 import { UserAvatar } from '@/components/sidebar/user/user-avatar';
-import { UserRowActions } from './table-actions';
+import { ActionsMenu } from '@/components/ui/actions-menu';
+import { getActionMenuItems } from './table-actions';
 import Link from 'next/link';
 import { ListUserResponse } from '@/lib/types/user/response/list-user-response';
 import { TFunction } from 'i18next';
+import { UsersPermissionHandler } from '@/lib/permissions/handlers/users-permission-handler';
 
 export function getUserDatatableColumns(
   t: TFunction<[string, string], undefined>
 ): ColumnDef<DataTableFeatures, ListUserResponse>[] {
-  return [
+  const handler = UsersPermissionHandler.getInstance();
+
+  const columns: ColumnDef<DataTableFeatures, ListUserResponse>[] = [
     {
       id: 'user',
       header: t('fields:user'),
@@ -30,10 +34,14 @@ export function getUserDatatableColumns(
               imageSrc=""
             />
             <div className="flex-1 align-top flex flex-col text-left gap-1 min-w-0 max-w-full">
-              <Link
-                href={`/admin/users/${row.original.id}`}
-                className="truncate hover:underline font-semibold text-foreground"
-              >{`${user.firstName} ${user.lastName}`}</Link>
+              {handler.canReadDetails() ? (
+                <Link
+                  href={`/admin/users/${row.original.id}`}
+                  className="truncate hover:underline font-semibold text-foreground"
+                >{`${user.firstName} ${user.lastName}`}</Link>
+              ) : (
+                <p className="truncate font-semibold text-foreground">{`${user.firstName} ${user.lastName}`}</p>
+              )}
               <span className="wrap-break-word whitespace-break-spaces text-xs text-muted-foreground">
                 {user.email}
               </span>
@@ -42,7 +50,10 @@ export function getUserDatatableColumns(
         );
       },
     },
-    {
+  ];
+
+  if (handler.canReadDetails() || handler.canDelete()) {
+    columns.push({
       id: 'action',
       header: t('common:actions'),
       enableHiding: false,
@@ -52,10 +63,16 @@ export function getUserDatatableColumns(
       cell: ({ row }) => {
         return (
           <div className="flex items-center justify-center">
-            <UserRowActions user={row.original} t={t} />
+            <ActionsMenu
+              items={getActionMenuItems(row.original, t, (href) => {
+                window.location.assign(href);
+              })}
+            />
           </div>
         );
       },
-    },
-  ];
+    });
+  }
+
+  return columns;
 }

@@ -23,12 +23,12 @@ export async function RoleDetailBreadcrumb({ id, tab }: RoleDetailBreadcrumbProp
   let roleDetails;
 
   try {
-    roleDetails = await getRoleDetails(BigInt(id));
+    const result = await getRoleDetails(BigInt(id));
+    if (!result.ok) {
+      notFound();
+    }
+    roleDetails = result.data;
   } catch {
-    notFound();
-  }
-
-  if (!roleDetails) {
     notFound();
   }
 

@@ -15,12 +15,12 @@ export function DeleteRoleModal({ name, id }: Readonly<DeleteRoleModalProps>) {
   const { t } = useT(['roles', 'common']);
   const router = useRouter();
   const confirm = async () => {
-    try {
-      await deleteRole(id);
+    const result = await deleteRole(id);
+    if (!result.ok) {
+      toast.error(result.message);
+    } else {
       toast.success(t('roles:notify_deleted', { name }));
       router.replace('/admin/roles');
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : t('roles:error_deleting'));
     }
   };
 
